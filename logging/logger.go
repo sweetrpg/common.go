@@ -10,6 +10,7 @@ import (
 
 var Logger logf.Logger
 
+// Initialize logging setup.
 func Init() {
 	level := logf.InfoLevel
 	switch util.GetEnv(constants.LOG_LEVEL, constants.INFO) {
