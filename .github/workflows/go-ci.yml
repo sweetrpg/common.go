@@ -9,6 +9,7 @@ on:
             - "**/*.go"
             - go.mod
             - go.sum
+            - magefile.go
             - .go-version
     workflow_dispatch:
 
@@ -33,7 +34,16 @@ jobs:
             - name: Build
               run: go build -v ./...
             - name: Test
-              run: go test -v ./...
+              run: |
+                    go test -v -coverprofile coverage.out ./...
+                    go tool cover -func coverage.out
+                    mkdir coverage
+                    go tool cover -html coverage.out -o coverage/coverage.html
+            - name: publish-docs
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                publish_dir: ./coverage
 
     #    docs:
     #        needs: [tests]
