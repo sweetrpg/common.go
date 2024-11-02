@@ -148,6 +148,7 @@ import (
         "strconv"
 )
 
+// Get environment variable with default value.
 func GetEnv(name string, defaultValue string) string <span class="cov8" title="1">{
         value, found := os.LookupEnv(name)
         if !found </span><span class="cov8" title="1">{
@@ -156,6 +157,7 @@ func GetEnv(name string, defaultValue string) string <span class="cov8" title="1
         <span class="cov8" title="1">return value</span>
 }
 
+// Get integer environment variable with default value.
 func GetEnvInt(name string, defaultValue int) int <span class="cov8" title="1">{
         value, found := os.LookupEnv(name)
         if !found </span><span class="cov8" title="1">{
