@@ -1,5 +1,6 @@
 package constants
 
+// Environment variables.
 const (
 	DEBUG     = "DEBUG"
 	ERROR     = "ERROR"
