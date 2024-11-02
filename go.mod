@@ -7,4 +7,5 @@ require github.com/zerodha/logf v0.5.5
 require (
 	github.com/magefile/mage v1.15.0 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
+	golang.org/x/tools v0.26.0 // indirect
 )

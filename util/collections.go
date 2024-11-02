@@ -1,3 +1,4 @@
+// Package util adds some utility functions.
 package util
 
 // Map the items in an input slice to something else, omitting null values
