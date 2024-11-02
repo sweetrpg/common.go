@@ -5,6 +5,7 @@ import (
 	"strconv"
 )
 
+// Get environment variable with default value.
 func GetEnv(name string, defaultValue string) string {
 	value, found := os.LookupEnv(name)
 	if !found {
@@ -13,6 +14,7 @@ func GetEnv(name string, defaultValue string) string {
 	return value
 }
 
+// Get integer environment variable with default value.
 func GetEnvInt(name string, defaultValue int) int {
 	value, found := os.LookupEnv(name)
 	if !found {
