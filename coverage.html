@@ -113,7 +113,8 @@ func Init() <span class="cov0" title="0">{
 }
 </pre>
 		
-		<pre class="file" id="file1" style="display: none">package util
+		<pre class="file" id="file1" style="display: none">// Package util adds some utility functions.
+package util
 
 // Map the items in an input slice to something else, omitting null values
 func Map[J any, K any](in []J, f func(J) *K) []K <span class="cov0" title="0">{
