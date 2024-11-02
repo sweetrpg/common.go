@@ -76,6 +76,7 @@
 		<pre class="file" id="file0" style="display: none">package logging
 
 import (
+        "log"
         "time"
 
         "github.com/sweetrpg/common/constants"
@@ -90,14 +91,18 @@ func Init() <span class="cov0" title="0">{
         level := logf.InfoLevel
         switch util.GetEnv(constants.LOG_LEVEL, constants.INFO) </span>{
         case constants.DEBUG:<span class="cov0" title="0">
+                log.Print("Setting log level to DEBUG")
                 level = logf.DebugLevel</span>
         case constants.WARN:<span class="cov0" title="0">
+                log.Print("Setting log level to WARN")
                 level = logf.WarnLevel</span>
         case constants.ERROR:<span class="cov0" title="0">
+                log.Print("Setting log level to ERROR")
                 level = logf.ErrorLevel</span>
         }
+        <span class="cov0" title="0">log.Printf("Log level: %v", level)
 
-        <span class="cov0" title="0">Logger = logf.New(logf.Opts{
+        Logger = logf.New(logf.Opts{
                 EnableColor:          true,
                 Level:                level,
                 CallerSkipFrameCount: 3,
