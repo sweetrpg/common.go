@@ -1,7 +1,5 @@
 name: PR
 
-concurrency: pr-${{ github.ref }}
-
 on:
     pull_request:
         branches: [develop]
