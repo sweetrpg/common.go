@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/sweetrpg/common/constants"
-	"github.com/sweetrpg/common/util"
+	"github.com/sweetrpg/common.go/constants"
+	"github.com/sweetrpg/common.go/util"
 	"github.com/zerodha/logf"
 )
 
