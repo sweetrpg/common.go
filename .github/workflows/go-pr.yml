@@ -3,11 +3,6 @@ name: PR
 on:
     pull_request:
         branches: [develop]
-        paths:
-            - "**/*.go"
-            - go.mod
-            - go.sum
-            - .go-version
 
 jobs:
     tests:
