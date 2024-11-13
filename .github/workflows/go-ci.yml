@@ -9,7 +9,6 @@ on:
             - "**/*.go"
             - go.mod
             - go.sum
-            - magefile.go
             - .go-version
     workflow_dispatch:
 
