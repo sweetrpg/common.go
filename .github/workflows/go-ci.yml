@@ -93,7 +93,7 @@ jobs:
             - name: Publish
               env:
                 GOPROXY: proxy.golang.org
-              run: go list -m github.com/sweetrpg/common@${{ steps.get_latest_tag.outputs.tag }}
+              run: go list -m github.com/${{ github.repository }}@${{ steps.get_latest_tag.outputs.tag }}
 
     notify:
         needs: [tag]
