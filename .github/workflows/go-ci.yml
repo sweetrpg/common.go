@@ -1,10 +1,10 @@
-name: CI
+name: Go CI
 
 concurrency: ci-${{ github.ref }}
 
 on:
     push:
-        branches: [develop]
+        branches: [go]
         paths:
             - "**/*.go"
             - go.mod

@@ -1,8 +1,8 @@
-name: PR
+name: Go PR
 
 on:
     pull_request:
-        branches: [develop]
+        branches: [go]
         paths:
             - "**/*.go"
             - go.mod
