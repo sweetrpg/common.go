@@ -1,4 +1,4 @@
-module github.com/sweetrpg/common
+module github.com/sweetrpg/common.go
 
 go 1.23.2
 
