@@ -22,8 +22,6 @@ jobs:
     concurrency: publish
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@v1
         env:

@@ -6,23 +6,17 @@ on:
     workflow_dispatch:
     schedule:
         - cron: "13 2 * * 0"
-    repository_dispatch:
-        types:
-            - common-published
-            - model-core-published
 
 jobs:
     tests:
-        name: ${{ matrix.name }}
+        name: Update dependencies for ${{ matrix.name }}
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
             matrix:
                 include:
-                    - {
-                          name: Linux,
-                          os: ubuntu-latest,
-                      }
+                    - name: Linux
+                      os: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
             - name: Set up Go

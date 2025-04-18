@@ -14,7 +14,7 @@ on:
 
 jobs:
     tests:
-        name: ${{ matrix.name }}
+        name: Build/test on ${{ matrix.name }}
         runs-on: ${{ matrix.os }}
         strategy:
             fail-fast: false
@@ -25,6 +25,8 @@ jobs:
 
         steps:
             - uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
             - name: Set up Go
               uses: actions/setup-go@v5
               with:
@@ -69,8 +71,6 @@ jobs:
             contents: write
         steps:
             - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
             - name: Bump version and push tag
               uses: anothrNick/github-tag-action@v1
               env:
