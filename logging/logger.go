@@ -1,3 +1,4 @@
+// Package logging provides logging setup and configuration.
 package logging
 
 import (

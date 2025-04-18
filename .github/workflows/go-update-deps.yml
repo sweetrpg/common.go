@@ -1,6 +1,6 @@
 name: Update Dependencies
 
-concurrency: deps-${{ github.ref }}
+concurrency: deps
 
 on:
     workflow_dispatch:

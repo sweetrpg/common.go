@@ -1,6 +1,6 @@
 name: CI
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci
 
 on:
     push:
