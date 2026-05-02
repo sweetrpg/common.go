@@ -27,7 +27,7 @@ jobs:
                       os: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
               with:
                 fetch-depth: 0
             - name: Set up Go
@@ -53,7 +53,7 @@ jobs:
     #        runs-on: ubuntu-latest
     #        concurrency: docs
     #        steps:
-    #            - uses: actions/checkout@v5
+    #            - uses: actions/checkout@v6
     #            - uses: actions/setup-python@v5
     #              with:
     #                  python-version: "3.11"
@@ -73,7 +73,7 @@ jobs:
         permissions:
             contents: write
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
             - name: Bump version and push tag
               uses: anothrNick/github-tag-action@v1
               env:
@@ -86,7 +86,7 @@ jobs:
         runs-on: ubuntu-latest
         concurrency: publish
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
               with:
                 fetch-depth: 0
             - name: Get latest tag
