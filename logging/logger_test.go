@@ -13,11 +13,11 @@ func TestInitConfiguresLoggerForEachLevel(t *testing.T) {
 	for _, level := range levels {
 		t.Run(level, func(t *testing.T) {
 			if level == "" {
-				os.Unsetenv(constants.LOG_LEVEL)
+				_ = os.Unsetenv(constants.LOG_LEVEL)
 			} else {
-				os.Setenv(constants.LOG_LEVEL, level)
+				_ = os.Setenv(constants.LOG_LEVEL, level)
 			}
-			defer os.Unsetenv(constants.LOG_LEVEL)
+			defer func() { _ = os.Unsetenv(constants.LOG_LEVEL) }()
 
 			Init()
 			Logger.Info("logger initialized", "level", level)
