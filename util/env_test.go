@@ -34,3 +34,11 @@ func TestGetEnvIntDefault(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestGetEnvIntInvalidValueReturnsDefault(t *testing.T) {
+	os.Setenv("TGEIV", "not-a-number")
+	value := GetEnvInt("TGEIV", 5678)
+	if value != 5678 {
+		t.Fail()
+	}
+}
