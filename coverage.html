@@ -55,19 +55,28 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/sweetrpg/common.go/logging/logger.go (0.0%)</option>
+				<option value="file0">github.com/sweetrpg/common.go/logging/logger.go (100.0%)</option>
 				
-				<option value="file1">github.com/sweetrpg/common.go/util/collections.go (0.0%)</option>
+				<option value="file1">github.com/sweetrpg/common.go/util/collections.go (100.0%)</option>
 				
-				<option value="file2">github.com/sweetrpg/common.go/util/env.go (90.9%)</option>
+				<option value="file2">github.com/sweetrpg/common.go/util/env.go (100.0%)</option>
 				
 				</select>
 			</div>
 			<div id="legend">
 				<span>not tracked</span>
 			
-				<span class="cov0">not covered</span>
-				<span class="cov8">covered</span>
+				<span class="cov0">no coverage</span>
+				<span class="cov1">low coverage</span>
+				<span class="cov2">*</span>
+				<span class="cov3">*</span>
+				<span class="cov4">*</span>
+				<span class="cov5">*</span>
+				<span class="cov6">*</span>
+				<span class="cov7">*</span>
+				<span class="cov8">*</span>
+				<span class="cov9">*</span>
+				<span class="cov10">high coverage</span>
 			
 			</div>
 		</div>
@@ -88,20 +97,20 @@ import (
 var Logger logf.Logger
 
 // Initialize logging setup.
-func Init() <span class="cov0" title="0">{
+func Init() <span class="cov10" title="5">{
         level := logf.InfoLevel
         switch util.GetEnv(constants.LOG_LEVEL, constants.INFO) </span>{
-        case constants.DEBUG:<span class="cov0" title="0">
+        case constants.DEBUG:<span class="cov1" title="1">
                 log.Print("Setting log level to DEBUG")
                 level = logf.DebugLevel</span>
-        case constants.WARN:<span class="cov0" title="0">
+        case constants.WARN:<span class="cov1" title="1">
                 log.Print("Setting log level to WARN")
                 level = logf.WarnLevel</span>
-        case constants.ERROR:<span class="cov0" title="0">
+        case constants.ERROR:<span class="cov1" title="1">
                 log.Print("Setting log level to ERROR")
                 level = logf.ErrorLevel</span>
         }
-        <span class="cov0" title="0">log.Printf("Log level: %v", level)
+        <span class="cov10" title="5">log.Printf("Log level: %v", level)
 
         Logger = logf.New(logf.Opts{
                 EnableColor:          true,
@@ -118,28 +127,28 @@ func Init() <span class="cov0" title="0">{
 package util
 
 // Map the items in an input slice to something else, omitting null values
-func Map[J any, K any](in []J, f func(J) *K) []K <span class="cov0" title="0">{
+func Map[J any, K any](in []J, f func(J) *K) []K <span class="cov5" title="2">{
         var k []K
 
-        for _, v := range in </span><span class="cov0" title="0">{
+        for _, v := range in </span><span class="cov10" title="4">{
                 o := f(v)
-                if o != nil </span><span class="cov0" title="0">{
+                if o != nil </span><span class="cov5" title="2">{
                         k = append(k, *o)
                 }</span>
         }
 
-        <span class="cov0" title="0">return k</span>
+        <span class="cov5" title="2">return k</span>
 }
 
 // Map the items in an input slice to something else, leaving null values
-func NullMap[J any, K any](in []J, f func(J) K) []K <span class="cov0" title="0">{
+func NullMap[J any, K any](in []J, f func(J) K) []K <span class="cov5" title="2">{
         k := make([]K, len(in))
 
-        for i, v := range in </span><span class="cov0" title="0">{
+        for i, v := range in </span><span class="cov8" title="3">{
                 k[i] = f(v)
         }</span>
 
-        <span class="cov0" title="0">return k</span>
+        <span class="cov5" title="2">return k</span>
 }
 </pre>
 		
@@ -151,26 +160,26 @@ import (
 )
 
 // Get environment variable with default value.
-func GetEnv(name string, defaultValue string) string <span class="cov8" title="1">{
+func GetEnv(name string, defaultValue string) string <span class="cov6" title="2">{
         value, found := os.LookupEnv(name)
-        if !found </span><span class="cov8" title="1">{
+        if !found </span><span class="cov1" title="1">{
                 return defaultValue
         }</span>
-        <span class="cov8" title="1">return value</span>
+        <span class="cov1" title="1">return value</span>
 }
 
 // Get integer environment variable with default value.
-func GetEnvInt(name string, defaultValue int) int <span class="cov8" title="1">{
+func GetEnvInt(name string, defaultValue int) int <span class="cov10" title="3">{
         value, found := os.LookupEnv(name)
-        if !found </span><span class="cov8" title="1">{
+        if !found </span><span class="cov1" title="1">{
                 return defaultValue
         }</span>
-        <span class="cov8" title="1">intValue, err := strconv.Atoi(value)
-        if err != nil </span><span class="cov0" title="0">{
+        <span class="cov6" title="2">intValue, err := strconv.Atoi(value)
+        if err != nil </span><span class="cov1" title="1">{
                 return defaultValue
         }</span>
 
-        <span class="cov8" title="1">return intValue</span>
+        <span class="cov1" title="1">return intValue</span>
 }
 </pre>
 		
