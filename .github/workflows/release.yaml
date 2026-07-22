@@ -24,8 +24,8 @@ jobs:
         id: ci_token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.CI_APP_ID }}
-          private-key: ${{ secrets.CI_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.SRPG_CI_APP_ID }}
+          private-key: ${{ secrets.SRPG_CI_PRIVATE_KEY }}
 
       - name: Resolve tag
         id: resolve_tag
@@ -87,20 +87,22 @@ jobs:
           tag_name: ${{ steps.resolve_tag.outputs.tag }}
           body_path: RELEASE_NOTES.md
 
-      # Pushed with the CI app token, not the default GITHUB_TOKEN: the develop branch
-      # ruleset requires a passing CI status check for the exact commit being pushed,
-      # but a merge commit created and pushed here has never existed on GitHub before, so
-      # no check can have run against it yet -- GITHUB_TOKEN's actions-bot identity isn't
-      # a configured bypass actor and gets rejected. The CI app is a bypass actor, so
-      # pushing as it skips the unsatisfiable check instead of racing it.
+      # Uses the "Merge a branch" REST API instead of a local `git merge` + `git push`:
+      # the develop branch ruleset requires every commit to be signed, and a merge
+      # commit built by a local git client has no signature attached. A merge created
+      # server-side through this endpoint is authored and signed by GitHub itself (the
+      # same way a PR's merge button produces a "Verified" commit), so it satisfies the
+      # rule without needing a signing key in CI. It also sidesteps the develop
+      # ruleset's required status check: a brand new merge commit has never existed on
+      # GitHub before, so no check could have run against it yet -- pushing as the CI
+      # app (a configured bypass actor) skips that unsatisfiable check instead of
+      # racing it.
       - name: Update develop from master
         id: update_develop
         env:
           GH_TOKEN: ${{ steps.ci_token.outputs.token }}
         run: |
-          git config --global user.email "ci@sweetrpg.com"
-          git config --global user.name "SweetRPG CI"
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/sweetrpg/common.go"
-          git checkout develop
-          git merge origin/master
-          git push origin develop
+          gh api repos/sweetrpg/common.go/merges \
+            -f base=develop \
+            -f head=master \
+            -f commit_message="chore(release): merge master into develop after ${{ steps.resolve_tag.outputs.tag }}"

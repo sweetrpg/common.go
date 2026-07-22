@@ -34,8 +34,8 @@ jobs:
         id: ci_token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.CI_APP_ID }}
-          private-key: ${{ secrets.CI_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.SRPG_CI_APP_ID }}
+          private-key: ${{ secrets.SRPG_CI_PRIVATE_KEY }}
 
       - name: Checkout master
         uses: actions/checkout@v6
