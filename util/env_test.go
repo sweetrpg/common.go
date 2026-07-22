@@ -6,7 +6,7 @@ import (
 )
 
 func TestGetEnv(t *testing.T) {
-	os.Setenv("TGE", "value")
+	_ = os.Setenv("TGE", "value")
 	value := GetEnv("TGE", "default")
 	if value != "value" {
 		t.Fail()
@@ -21,7 +21,7 @@ func TestGetEnvDefault(t *testing.T) {
 }
 
 func TestGetEnvInt(t *testing.T) {
-	os.Setenv("TGEI", "1234")
+	_ = os.Setenv("TGEI", "1234")
 	value := GetEnvInt("TGEI", 5678)
 	if value != 1234 {
 		t.Fail()
@@ -30,6 +30,14 @@ func TestGetEnvInt(t *testing.T) {
 
 func TestGetEnvIntDefault(t *testing.T) {
 	value := GetEnvInt("TGEID", 5678)
+	if value != 5678 {
+		t.Fail()
+	}
+}
+
+func TestGetEnvIntInvalidValueReturnsDefault(t *testing.T) {
+	_ = os.Setenv("TGEIV", "not-a-number")
+	value := GetEnvInt("TGEIV", 5678)
 	if value != 5678 {
 		t.Fail()
 	}
